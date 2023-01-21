@@ -2,7 +2,6 @@
 output: github_document
 ---
 
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -12,12 +11,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-** note this is a initial version of the README file which will be updated for the future milestones**
+\*\* note this is a initial version of the README file which will be updated for the future milestones\*\*
 
 # sanityzeR
 
 <!-- badges: start -->
+
 <!-- badges: end -->
+
+![](logo.png)
 
 The goal of sanityzeR:
 
@@ -25,11 +27,13 @@ Data scientists often need to remove or redact Personal Identifiable Information
 
 PII can be used to uniquely identify a person. This includes names, addresses, credit card numbers, phone numbers, email addresses, and social security numbers, and therefore regulatory bodies such as the European Union's General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA) require that PII be removed or redacted from data sets before they are shared an further processed
 
-## Why `sanityzeR` ? 
+## Why `sanityzeR` ?
+
 Because it's a fun name and it's a play on the word "sanitize" which is what we are doing to the data
 
-## Similar R packages 
- **add to this**
+## Similar R packages
+
+The closest R package in functionality is [**anonymizer**](https://www.rdocumentation.org/packages/anonymizer/versions/0.2.0)which is a package for finding and removing PII from text. The package is not designed to work with data frames directly and we believe that our package will be more user-friendly and intuitive as it accepts data frames directly. In addition, sanityzeR gives the ability for users to define new type of spotters to redact new types of PII.
 
 ## Installation
 
@@ -50,51 +54,47 @@ library(sanityzeR)
 ```
 
 ## Features and Usage
-Conceptually, `sanityzeR` is a package that provides a way to remove PII from Pandas data frames. The package provides a number of default spotters, which can be used to identify PII in the data and redact them. 
 
-The main entry point to the package is the `Cleanser` class. The `Cleanser` class is used to add `Spotter`s to the cleanser, which will be used to identify PII in the data. The cleanser can then be used to cleanse the data, and redact the PII from the given data frame (all future data structures that will be suppportd by the package, in the future). **edit this as needed**
+Conceptually, `sanityzeR` is a package that provides a way to remove PII from Pandas data frames. The package provides a number of default spotters, which can be used to identify PII in the data and redact them.
 
-The package comes with a number of default spotters, as subclassess of `Spotter`:
-1. `CreditCardSpotter` - identifies credit card numbers
-2. `EmailSpotter` - identifies email addresses
+The library comes with two default redaction functions `redact_creditcardnumber` and `redact_email` and which simply takes a character vector and redacts the corresponding PII using either a constant string replacement or a hash of the redaction.
 
-Spotters can be added to it using the `add_spotter()` method. The cleanser can then be used to cleanse data using the `cleanse()` method which takes a Pandas data frame and returns a Pandas data frame with PII redacted.
+## Functions
 
-The redaction options provided by `sanityze`` are:
-1. Redact using a fixed string - The string in this case is the ID of the spotter. For example, if the spotter is an instance of `CreditCardSpotter`, the string will be `{{CREDITCARD}}`, or `{{EMAILADDRS}}` for an instance of `EmailSpotter`.
-2. Redact using a hash of the input - The hash is computed using the `hashlib` package, and the hash function is `md5`. For example, if the spotter is an instance of `CreditCardSpotter`, the string will be `{{6a8b8c6c8c62bc939a11f36089ac75dd}}`, if the input is contains a PII `1234-5678-9012-3456`.
+1.  `redact_creditcardnumber()`: a function that takes a character vector (string) and redacts credit card numbers contained within that string, replacing them with either:
+    1.  A constant string that the user can specify
 
+    2.  A hash of the redaction (using MD5)
+2.  `redact_email`: a function that takes a character vector (string) and redacts email addresses contained within that string, replacing them with either:
+    1.  A constant string that the user can specify
 
-## Classes and Functions
-1. `Cleanser`: the main class of the package. It is used to add spotters to it, and then cleanse data using the spotters.
-   1. `add_spotter()`: adds a spotter to the cleanser
-   2. `remove_spotter()`: removes a spotter from the cleanser
-   3. `clean()`: cleanses the data in the given data frame, and returns a new data frame with PII redacted
-2. `EmailSpotter`: a spotter that identifies email addresses
-   1. `getUID()`: returns the unique ID of the spotter
-   2. `process()`: performs the PII matching and redaction
-3. `CreditCardSpotter`: a spotter that identifies credit card numbers
-   1. `getUID()`: returns the unique ID of the spotter
-   2. `process()`: performs the PII matching and redaction
+    2.  A hash of the redaction (using MD5)
+3.  `clean_data_frame`: a function that takes as input the following list of arguments below and returns a deep copy of the cleaned data.frame:
+    1.  An input data.frame `df` to clean
 
-> You can checkout detailed API Documentations [here](https://ubc-mds.github.io/sanityze/).
+    2.  A list of spotter information arguments. Each item in the list is a list of 3 elements:
+
+        1.  The redact\_\* function to use (e.g. `redact_creditcardnumber` ).
+
+        2.  The second argument of the redact\_\* function: `hash_spotted` (TRUE or FALSE) or 0 to use the default argument.
+
+        3.  The third argument of the redact\_\* function: `replace_with` (a redaction string) or 0 to use the default argument.
 
 Below is a simple quick start example:
 
-```python
-import pandas as pd
-from sanityze import Cleanser, EmailSpotter
+``` r
+library(sanityzeR)
+df <- data.frame()
+spotters <- list()
+spotter_1 <- list(redact_email,TRUE,0)
+spotters <- append(spotters,spotter_1)
 
-# Create a cleanser, and don't add the default spotters
-cleanser = Cleanser(include_default_spotters=False)
-cleaner.add_spotter(from sanityze import Cleanser, EmailSpotter())
-cleaned_df = cleanser.clean(df)
+df_cleaned <- clean_data_frame(df, spotters)
 ```
 
-
-
 ## High-level Design
-To better understand the design of the package, we have provided a high-level design document, which will be kept up to date as the package evolves. The document can be found [here](HighLevelDesign.md).
+
+To better understand the design of the package, we have provided a high-level design document, which will be kept up to date as the package evolves. The document can be found [here](https://github.com/UBC-MDS/sanityze/blob/main/HighLevelDesign.md).
 
 ## Contributing
 
@@ -106,13 +106,13 @@ Interested in contributing? Check out the [contributing guidelines](CONTRIBUTING
 
 ## Credits
 
-`sanityzeR` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`sanityzeR` was created using **devtools** and **usethis** R packages.
 
 ## Quick Links
-  * [Documentation](https://ubc-mds.github.io/sanityze/)
-  * [Kanban Board](https://github.com/orgs/UBC-MDS/projects/15)
-  * [Issues](https://github.com/UBC-MDS/sanityze/issues)
-  * [High Level Design](HighLevelDesign.md) 
-  * [Contributing Guidelines](CONTRIBUTING.md)
-  * [Code of Conduct](CODE_OF_CONDUCT.md)
-  * [License](LICENSE)
+
+-   [Kanban Board](https://github.com/orgs/UBC-MDS/projects/15)
+-   [Issues](https://github.com/UBC-MDS/sanityzeR/issues)
+-   [High Level Design](https://github.com/UBC-MDS/sanityze/blob/main/HighLevelDesign.md)
+-   [Contributing Guidelines](CONTRIBUTING.md)
+-   [Code of Conduct](CODE_OF_CONDUCT.md)
+-   [License](LICENSE.md)
