@@ -44,11 +44,16 @@ devtools::install_github("UBC-MDS/sanityzeR")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem: **edit this**
+This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(sanityzeR)
-## basic example code
+df <- data.frame()
+spotters <- list()
+spotter_1 <- list(redact_email,TRUE,0)
+spotters <- append(spotters,spotter_1)
+
+df_cleaned <- clean_data_frame(df, spotters)
 ```
 
 ## Features and Usage

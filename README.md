@@ -47,11 +47,31 @@ devtools::install_github("UBC-MDS/sanityzeR")
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
-**edit this**
 
 ``` r
 library(sanityzeR)
-## basic example code
+df <- data.frame()
+spotters <- list()
+spotter_1 <- list(redact_email,TRUE,0)
+spotters <- append(spotters,spotter_1)
+
+df_cleaned <- clean_data_frame(df, spotters)
+#> data frame with 0 columns and 0 rows
+#> [[1]]
+#> function (string, hash_spotted = FALSE, replace_with = "EMAILADDRS") 
+#> {
+#>     print(string)
+#>     print(hash_spotted)
+#>     print(replace_with)
+#> }
+#> <bytecode: 0x15ea6d740>
+#> <environment: namespace:sanityzeR>
+#> 
+#> [[2]]
+#> [1] TRUE
+#> 
+#> [[3]]
+#> [1] 0
 ```
 
 ## Features and Usage
