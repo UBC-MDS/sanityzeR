@@ -1,7 +1,4 @@
 
-\*\* note this is a initial version of the README file which will be
-updated for the future milestones\*\*
-
 # sanityzeR
 
 <!-- badges: start -->
