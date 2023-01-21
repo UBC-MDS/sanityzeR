@@ -5,13 +5,14 @@ Authors@R:
     c(person(given = "Jonah", 
             family =  "Hamilton", 
             email = "jonah.hamilton@alumni.ubc.ca", 
-            role = c("aut", "cre")),
+            role = c("aut")),
       person(given = "Caesar",
              family = "Wong", 
-             role = "ctb"),
+             role = c("ctb")),
       person(given = "Tony",
              family = "Zoght",
-             role = "ctb")
+             email = "tony@zoght.com",
+             role = c("cre"))
            )
 Description: Data scientists often need to remove or redact Personal Identifiable 
              Information (PII) from their data. This package provides utilities 
