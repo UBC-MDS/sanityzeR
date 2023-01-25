@@ -11,9 +11,22 @@
 #' @examples
 #' x <- "my email address is foo@gaga.com"
 #' redact_email(x)
+#'
+library(stringr)
+library(openssl)
+
 redact_email <- function(string, hash_spotted=FALSE, replace_with="EMAILADDRS") {
-  # to be implemented in the next milestone
   print(string)
   print(hash_spotted)
   print(replace_with)
+
+  regex <- "\\b[a-z0-9!#$%&'*+/=?^_`{|}~-](?:[\\.a-z0-9!#$%&'*+/=?^_`{|}~-]{0,62}[a-z0-9!#$%&'*+/=?^_`{|}~-])?(?:@|\\sat\\s)[a-z0-9](?:[a-z0-9-]+(\\.|\\sdot\\s)(?:\\.|\\sdot\\s|[a-z0-9-]){0,251}[a-z0-9])+\\b"
+  if (hash_spotted) {
+    new_text <- str_replace_all(string, regex, function(x) md5(x[1]))
+    return(new_text)
+  } else {
+    new_text <- gsub(regex, replace_with, string, ignore.case = TRUE)
+    return(new_text)
+  }
 }
+
