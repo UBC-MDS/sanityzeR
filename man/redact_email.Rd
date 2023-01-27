@@ -22,4 +22,5 @@ Redacts an email addresses from a given string
 \examples{
 x <- "my email address is foo@gaga.com"
 redact_email(x)
+
 }

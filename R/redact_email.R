@@ -12,9 +12,6 @@
 #' x <- "my email address is foo@gaga.com"
 #' redact_email(x)
 #'
-library(stringr)
-library(openssl)
-
 redact_email <- function(string, hash_spotted=FALSE, replace_with="EMAILADDRS") {
   print(string)
   print(hash_spotted)
