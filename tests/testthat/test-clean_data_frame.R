@@ -1,7 +1,7 @@
 ################ Test Data #####################################################
 df <- data.frame(
  Name = c("My email address is 123456abcd@yahoo.com and zzzzz123@yahoo.mail Thank you.",
-                          "Bill for 4556129404313766",
+                          "Bill for: 4556129404313766",
                           "Maria",
                           "Ben",
                           "Tina"),
@@ -10,7 +10,7 @@ df <- data.frame(
 
 df_hashed <- data.frame(
   Name = c("My email address is 00345d02eb20733e49077c9618f0d598 and ba68a57288bf24140628f37aadbb7920 Thank you.",
-                                 "Bill for 34c2171639b834dce4b1c0183a91d427",
+                                 "Billfor:e93723ee0d38e30a68902aef6b0033de",
                                  "Maria",
                                  "Ben",
                                  "Tina"),
@@ -19,7 +19,7 @@ df_hashed <- data.frame(
 
 df_redacted <- data.frame(
   Name = c("My email address is EMAILADDRS and EMAILADDRS Thank you.",
-                                   "Bill for CREDITCARD",
+                                   "Billfor:CREDITCARD",
                                    "Maria",
                                    "Ben",
                                    "Tina"),
@@ -37,13 +37,13 @@ df_email_redacted <- data.frame(Name = c("My email address is EMAILADDRS and EMA
                               Age = c(23)
 )
 
-df_cc <- data.frame(Name = c("Bill for 4556129404313766"),
+df_cc <- data.frame(Name = c("Bill for: 4556129404313766"),
                        Age = c(23)
 )
-df_cc_hashed <- data.frame(Name = c("Bill for CREDITCARD"),
+df_cc_hashed <- data.frame(Name = c("Billfor:e93723ee0d38e30a68902aef6b0033de"),
                               Age = c(23)
 )
-df_cc_redacted <- data.frame(Name = c("Bill for 34c2171639b834dce4b1c0183a91d427"),
+df_cc_redacted <- data.frame(Name = c("Billfor:CREDITCARD"),
                                 Age = c(23)
 )
 
@@ -98,15 +98,15 @@ test_that("clean_data_frame: email hashed and redacted", {
 # test suite 3: hashed and redacted credit card  only
 test_that("clean_data_frame: credit card hashed and redacted", {
 
-  # expect_equal(clean_data_frame(df_cc,spotters_cc_hashed),df_cc_hashed)
-  #
-  # expect_equal(clean_data_frame(df_email,spotters_cc_redacted),df_cc_redacted)
+  expect_equal(clean_data_frame(df_cc,spotters_cc_hashed),df_cc_hashed)
+
+  expect_equal(clean_data_frame(df_cc,spotters_cc_redacted),df_cc_redacted)
 })
 
 # test suite 4: end to end
 test_that("clean_data_frame: credit card and email", {
 
-  # expect_equal(clean_data_frame(df,spotters_hashed),df_hashed)
-  #
-  # expect_equal(clean_data_frame(df,spotters_redacted),df_redacted)
+  expect_equal(clean_data_frame(df,spotters_hashed),df_hashed)
+
+  expect_equal(clean_data_frame(df,spotters_redacted),df_redacted)
 })
