@@ -24,5 +24,3 @@ redact_creditcardnumber <- function(string, hash_spotted=FALSE, replace_with="CR
     return(new_clean_text)
   }
 }
-
-
