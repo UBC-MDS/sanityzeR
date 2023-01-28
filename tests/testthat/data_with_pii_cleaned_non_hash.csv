@@ -1,11 +1,11 @@
 first_name,last_name,email_address,visa_cc,master_cc,balance,active_member,age
-Jacob,King,the following is my email address EMAILADDRS,CREDITCARD,CREDITCARD,100,1,24
-Chloe,Lavoie,the following is my email address EMAILADDRS,CREDITCARD,CREDITCARD,200,0,36
-Myles,Clark,EMAILADDRS,CREDITCARD,CREDITCARD,300,1,23
-Daniel,Murray,EMAILADDRS,CREDITCARD,CREDITCARD,400,0,28
-​Lucy,Landry,​EMAILADDRS,CREDITCARD,CREDITCARD,500,1,37
-Austin,Cote,EMAILADDRS,CREDITCARD,CREDITCARD,600,1,31
-Leo,Leblanc,EMAILADDRS,CREDITCARD,CREDITCARD,700,0,41
+Jacob,King,the following is my email address EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,100,1,24
+Chloe,Lavoie,the following is my email address EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,200,0,36
+Myles,Clark,EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,300,1,23
+Daniel,Murray,EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,400,0,28
+​Lucy,Landry,​EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,500,1,37
+Austin,Cote,EMAILADDRS,this is my credit card: CREDITCARD,CREDITCARD,600,1,31
+Leo,Leblanc,EMAILADDRS,this is my credit card: CREDITCARD,this is my master card number: CREDITCARD,700,0,41
 Luke,Cote,EMAILADDRS,CREDITCARD,CREDITCARD,800,1,43
 Chloe,Martin,EMAILADDRS,CREDITCARD,CREDITCARD,900,0,58
 Sophia,Taylor,EMAILADDRS,CREDITCARD,CREDITCARD,1000,1,67

@@ -13,13 +13,15 @@
 #' redact_email(x)
 #'
 redact_email <- function(string, hash_spotted=FALSE, replace_with="EMAILADDRS") {
-  regex <- "\\b[a-z0-9!#$%&'*+/=?^_`{|}~-](?:[\\.a-z0-9!#$%&'*+/=?^_`{|}~-]{0,62}[a-z0-9!#$%&'*+/=?^_`{|}~-])?(?:@|\\sat\\s)[a-z0-9](?:[a-z0-9-]+(\\.|\\sdot\\s)(?:\\.|\\sdot\\s|[a-z0-9-]){0,251}[a-z0-9])+\\b"
+  #regex <- "\\b[a-z0-9!#$%&'*+/=?^_`{|}~-](?:[\\.a-z0-9!#$%&'*+/=?^_`{|}~-]{0,62}[a-z0-9!#$%&'*+/=?^_`{|}~-])?(?:@|\\sat\\s)[a-z0-9](?:[a-z0-9-]+(\\.|\\sdot\\s)(?:\\.|\\sdot\\s|[a-z0-9-]){0,251}[a-z0-9])+\\b"
+
+  regex <- "\\b[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-](?:[\\.a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]{0,62}[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-])?(?:@|\\sat\\s)[a-zA-Z0-9](?:(?=[a-zA-Z0-9-]*(\\.|\\sdot\\s))(?:\\.|\\sdot\\s|[a-zA-Z0-9-]){0,251}[a-zA-Z0-9])+\\b"
+
   if (hash_spotted) {
     new_text <- stringr::str_replace_all(string, regex, function(x) openssl::md5(x[1]))
     return(new_text)
   } else {
-    new_text <- gsub(regex, replace_with, string, ignore.case = TRUE)
+    new_text <- stringr::str_replace_all(string, regex, replace_with)
     return(new_text)
   }
 }
-
