@@ -10,7 +10,7 @@ df <- data.frame(
 
 df_hashed <- data.frame(
   Name = c("My email address is 00345d02eb20733e49077c9618f0d598 and ba68a57288bf24140628f37aadbb7920 Thank you.",
-                                 "Billfor:e93723ee0d38e30a68902aef6b0033de",
+                                 "Bill for: e93723ee0d38e30a68902aef6b0033de",
                                  "Maria",
                                  "Ben",
                                  "Tina"),
@@ -19,7 +19,7 @@ df_hashed <- data.frame(
 
 df_redacted <- data.frame(
   Name = c("My email address is EMAILADDRS and EMAILADDRS Thank you.",
-                                   "Billfor:CREDITCARD",
+                                   "Bill for: CREDITCARD",
                                    "Maria",
                                    "Ben",
                                    "Tina"),
@@ -40,10 +40,10 @@ df_email_redacted <- data.frame(Name = c("My email address is EMAILADDRS and EMA
 df_cc <- data.frame(Name = c("Bill for: 4556129404313766"),
                        Age = c(23)
 )
-df_cc_hashed <- data.frame(Name = c("Billfor:e93723ee0d38e30a68902aef6b0033de"),
+df_cc_hashed <- data.frame(Name = c("Bill for: e93723ee0d38e30a68902aef6b0033de"),
                               Age = c(23)
 )
-df_cc_redacted <- data.frame(Name = c("Billfor:CREDITCARD"),
+df_cc_redacted <- data.frame(Name = c("Bill for: CREDITCARD"),
                                 Age = c(23)
 )
 
@@ -60,10 +60,10 @@ spotter_2_h <- list(redact_creditcardnumber,TRUE,0)
 spotters_hashed <- list(spotter_2_h,spotter_1_h)
 
 spotter_1_h <- list(redact_email,FALSE,"EMAILADDRS")
-spotters_redacted <- list(spotter_1_h)
+spotters_e_redacted <- list(spotter_1_h)
 
 spotter_1_r <- list(redact_email,TRUE,0)
-spotters_hashed <- list(spotter_1_r)
+spotters_e_hashed <- list(spotter_1_r)
 
 spotter_1_hc <- list(redact_creditcardnumber,FALSE,"CREDITCARD")
 spotters_cc_redacted <- list(spotter_1_hc)
@@ -90,9 +90,9 @@ test_that("clean_data_frame: error checking and validation", {
 # test suite 2: hashed and redacted email only
 test_that("clean_data_frame: email hashed and redacted", {
 
-  expect_equal(clean_data_frame(df_email,spotters_hashed),df_email_hashed)
+  expect_equal(clean_data_frame(df_email,spotters_e_hashed),df_email_hashed)
 
-  expect_equal(clean_data_frame(df_email,spotters_redacted),df_email_redacted)
+  expect_equal(clean_data_frame(df_email,spotters_e_redacted),df_email_redacted)
 })
 
 # test suite 3: hashed and redacted credit card  only
