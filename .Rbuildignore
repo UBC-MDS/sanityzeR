@@ -4,3 +4,7 @@
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
 ^\.github$
+CONTRIBUTING.md
+CONTRIBUTORS.md
+logo.png
+TESTDRIVER.Rmd
