@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 # sanityzeR
 
 <!-- badges: start -->
-
+[![test-coverage-r](https://github.com/UBC-MDS/sanityzeR/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/sanityzeR/actions/workflows/test-coverage.yaml) [![R-check](https://github.com/UBC-MDS/sanityzeR/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/UBC-MDS/sanityzeR/actions/workflows/check-standard.yaml)
 <!-- badges: end -->
 
 ![](logo.png)
