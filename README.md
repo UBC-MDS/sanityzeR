@@ -5,8 +5,7 @@
 
 [![test-coverage-r](https://github.com/UBC-MDS/sanityzeR/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/UBC-MDS/sanityzeR/actions/workflows/test-coverage.yaml)
 [![R-check](https://github.com/UBC-MDS/sanityzeR/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/UBC-MDS/sanityzeR/actions/workflows/check-standard.yaml)
-[![Codecov test
-coverage](https://app.codecov.io/gh/UBC-MDS/SanityzeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/UBC-MDS/SanityzeR?branch=main)
+[![Codecov](https://codecov.io/gh/UBC-MDS/SanityzeR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/UBC-MDS/SanityzeR?branch=main)
 <!-- badges: end -->
 
 ![](logo.png)
@@ -151,3 +150,4 @@ It is licensed under the terms of the [MIT license](LICENSE).
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
 - [License](LICENSE.md)
+- [Code Coverage](https://app.codecov.io/gh/UBC-MDS/SanityzeR?branch=main)
