@@ -1,24 +1,98 @@
 ---
-title: "Getting Started with sanityze"
+title: "Getting Started with sanityzeR"
+description: >
+  Learn how to get started with the basics of sanityzeR.
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{sanityzeR}
+  %\VignetteIndexEntry{Getting Started with sanityzeR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+## The goal of sanityzeR
 
-- Simple
-- Effective
-- Scalable
+Data scientists often need to remove or redact Personal Identifiable
+Information (PII) from their data. This package provides utilities to
+spot and redact PII from r data frames/Tibbles.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+PII can be used to uniquely identify a person. This includes names,
+addresses, credit card numbers, phone numbers, email addresses, and social
+security numbers, and therefore regulatory bodies such as the European Union’s
+General Data Protection Regulation (GDPR) and the California Consumer 
+Privacy Act (CCPA) require that PII be removed or redacted from data sets 
+before they are shared an further processed.
+
+## Functionalities
+
+This document introduces you to the fundamental tools of sanityzeR and shows 
+you how to apply them with data frames.
+
+There are three functions in this package including data cleaning, credit 
+card number handling, and email address handling.
+
+
+## Installation
+
+You can install the development version of sanityzeR from
+[GitHub](https://github.com/) with:
+
+```{r install, eval=FALSE, message=FALSE}
+# install.packages("devtools")
+devtools::install_github("UBC-MDS/sanityzeR")
 ```
+
+## Setup
 
 ```{r setup}
 library(sanityzeR)
+```
+
+### Create a dummy dataframe
+
+```{r createDF}
+df <- data.frame(
+ Name = c("My email address is 123456abcd@yahoo.com and zzzzz123@yahoo.mail Thank you.",
+                          "Bill for: 4556129404313766",
+                          "Maria",
+                          "Ben",
+                          "Tina"),
+                 Age = c(23, 41, 32, 16, 26)
+)
+df
+```
+
+### Create Spotters with redacted function
+
+The following spotters will replace the detected PII with a fixed string.
+
+```{r createSpotterRedact}
+spotter_1_r <- list(redact_email,FALSE,"EMAILADDRS")
+spotter_2_r <- list(redact_creditcardnumber,FALSE,"CREDITCARD")
+spotters_redacted <- list(spotter_2_r,spotter_1_r)
+```
+
+### Create Spotters with hash function
+
+The following spotters will replace the detected PII with a hash.
+
+```{r createSpotterHash}
+spotter_1_h <- list(redact_email,TRUE,0)
+spotter_2_h <- list(redact_creditcardnumber,TRUE,0)
+spotters_hashed <- list(spotter_2_h,spotter_1_h)
+```
+
+## Clean PII with redacted
+
+Replacing the PII with a fixed string.
+
+```{r cleanPIIwithRedacted}
+clean_data_frame(df, spotters_redacted)
+```
+
+## Clean PII with hash
+
+Replacing the PII with a hash.
+
+```{r cleanPIIwithHash}
+clean_data_frame(df, spotters_hashed)
 ```

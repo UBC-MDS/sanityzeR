@@ -10,7 +10,7 @@
 
 ![](logo.png)
 
-The goal of sanityzeR:
+## The Goal of sanityzeR
 
 Data scientists often need to remove or redact Personal Identifiable
 Information (PII) from their data. This package provides utilities to
@@ -21,17 +21,17 @@ addresses, credit card numbers, phone numbers, email addresses, and
 social security numbers, and therefore regulatory bodies such as the
 European Union’s General Data Protection Regulation (GDPR) and the
 California Consumer Privacy Act (CCPA) require that PII be removed or
-redacted from data sets before they are shared an further processed
+redacted from data sets before they are shared an further processed.
 
 ## Why `sanityzeR` ?
 
 Because it’s a fun name and it’s a play on the word “sanitize” which is
-what we are doing to the data
+what we are doing to the data.
 
 ## Similar R packages
 
 The closest R package in functionality is
-[**anonymizer**](https://www.rdocumentation.org/packages/anonymizer/versions/0.2.0)which
+[**anonymizer**](https://www.rdocumentation.org/packages/anonymizer/versions/0.2.0) which
 is a package for finding and removing PII from text. The package is not
 designed to work with data frames directly and we believe that our
 package will be more user-friendly and intuitive as it accepts data
