@@ -8,3 +8,6 @@ CONTRIBUTING.md
 CONTRIBUTORS.md
 logo.png
 TESTDRIVER.Rmd
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
