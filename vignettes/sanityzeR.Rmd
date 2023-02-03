@@ -1,0 +1,24 @@
+---
+title: "Getting Started with sanityze"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sanityzeR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+- Simple
+- Effective
+- Scalable
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sanityzeR)
+```
